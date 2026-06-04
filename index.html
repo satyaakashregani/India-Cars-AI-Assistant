@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India Cars LLM - Pre-Trained Chat Engine</title>
+  <!-- Google Fonts: Outfit (Brand & Headings) and JetBrains Mono (Specs & Code Console) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;1,300&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons (Loaded via CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar animate-fade-in">
+      <div class="brand-section">
+        <div class="brand-icon">
+          <i data-lucide="cpu" class="glow-icon"></i>
+        </div>
+        <div class="brand-text">
+          <h1>INDIA CARS LLM</h1>
+          <span class="version-tag">PRE-TRAINED v2026.1</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-btn active" id="tab-chat" onclick="switchTab('chat')">
+          <i data-lucide="message-square-code"></i>
+          <span>AI Chat Engine</span>
+          <span class="active-indicator"></span>
+        </button>
+        <button class="nav-btn" id="tab-explorer" onclick="switchTab('explorer')">
+          <i data-lucide="search-code"></i>
+          <span>Car Explorer</span>
+          <span class="active-indicator"></span>
+        </button>
+        <button class="nav-btn" id="tab-compare" onclick="switchTab('compare')">
+          <i data-lucide="git-compare"></i>
+          <span>Comparison Deck</span>
+          <span class="active-indicator"></span>
+        </button>
+        <button class="nav-btn" id="tab-matcher" onclick="switchTab('matcher')">
+          <i data-lucide="sliders"></i>
+          <span>Smart Matcher</span>
+          <span class="active-indicator"></span>
+        </button>
+      </nav>
+
+      <div class="system-status">
+        <div class="status-indicator">
+          <span class="pulse"></span>
+          <span>Fully Embedded KB</span>
+        </div>
+        <p class="status-desc">No external API | 100% Offline</p>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- HEADER -->
+      <header class="top-bar animate-fade-in">
+        <div class="header-info">
+          <h2 id="current-tab-title">AI Chat Engine</h2>
+          <p id="current-tab-desc" class="text-muted">Converse with the pre-trained engine using natural prompts</p>
+        </div>
+        <div class="header-meta">
+          <span class="meta-tag"><i data-lucide="database"></i> 27 Iconic Models</span>
+          <span class="meta-tag"><i data-lucide="shield-check"></i> NCAP Audited</span>
+        </div>
+      </header>
+
+      <!-- TAB: CHAT ENGINE -->
+      <section id="content-chat" class="tab-content active-content animate-slide-up">
+        <div class="chat-wrapper">
+          <div class="chat-history" id="chat-history-box">
+            <!-- System Greeting -->
+            <div class="chat-message system">
+              <div class="message-sender">
+                <i data-lucide="bot"></i>
+                <span>SYSTEM AGENT</span>
+              </div>
+              <div class="message-body">
+                <pre class="console-font">==========================================================================
+    WELCOME TO INDIA CARS LLM  --  PRE-TRAINED OFFLINE CHAT ENGINE
+==========================================================================
+    I am an offline rule-based knowledge engine containing deep profiles 
+    of iconic Indian cars sold between 2000 and 2026.
+    
+    You can query me by typing things like:
+    * "tell me about Mahindra Thar"
+    * "price of Tata Nexon EV"
+    * "compare Swift and Hyundai i20"
+    * "safest hatchbacks in India"
+    * "mileage of Maruti Celerio"
+    * "show me SUVs under 15 lakhs"
+    * "list all electric cars"
+==========================================================================</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Suggested Prompts -->
+          <div class="suggested-prompts">
+            <span class="suggestion" onclick="fillPrompt('tell me about Mahindra Thar')">Describe Thar</span>
+            <span class="suggestion" onclick="fillPrompt('compare Swift and Grand i10 Nios')">Swift vs i10 Nios</span>
+            <span class="suggestion" onclick="fillPrompt('show me safest cars in India')">🛡️ Safest Cars</span>
+            <span class="suggestion" onclick="fillPrompt('list all electric cars')">⚡ Electric Models</span>
+            <span class="suggestion" onclick="fillPrompt('SUVs under 15 lakhs')">💰 SUVs &lt; 15L</span>
+            <span class="suggestion" onclick="fillPrompt('mileage of Celerio')">⛽ Best Mileage</span>
+          </div>
+
+          <!-- Input Bar -->
+          <form class="chat-input-area" id="chat-input-form" onsubmit="handleChatSubmit(event)">
+            <input type="text" id="chat-query-input" placeholder="Ask about price, specs, safety, mileage, variants, comparisons, or budget..." autocomplete="off">
+            <button type="submit" class="send-btn">
+              <span>Execute</span>
+              <i data-lucide="play-circle"></i>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- TAB: CAR EXPLORER -->
+      <section id="content-explorer" class="tab-content animate-slide-up">
+        <!-- Explorer Controls -->
+        <div class="filter-panel glassmorphism">
+          <div class="filter-group">
+            <label for="filter-brand"><i data-lucide="tag"></i> Brand</label>
+            <select id="filter-brand" onchange="applyFilters()">
+              <option value="all">All Brands</option>
+              <option value="Maruti Suzuki">Maruti Suzuki</option>
+              <option value="Hyundai">Hyundai</option>
+              <option value="Tata Motors">Tata Motors</option>
+              <option value="Mahindra">Mahindra</option>
+              <option value="Kia">Kia</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Honda">Honda</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-category"><i data-lucide="layout"></i> Body Style</label>
+            <select id="filter-category" onchange="applyFilters()">
+              <option value="all">All Body Styles</option>
+              <option value="Hatchback">Hatchback</option>
+              <option value="Sedan">Sedan</option>
+              <option value="SUV">SUV</option>
+              <option value="MPV">MPV</option>
+              <option value="Electric">Electric Vehicles</option>
+            </select>
+          </div>
+
+          <div class="filter-group search-box">
+            <label for="filter-search"><i data-lucide="keyboard"></i> Search Model</label>
+            <input type="text" id="filter-search" placeholder="Type to filter..." oninput="applyFilters()">
+          </div>
+        </div>
+
+        <!-- Explorer Grid -->
+        <div class="explorer-grid" id="explorer-cards-grid">
+          <!-- Cards injected by JS -->
+        </div>
+      </section>
+
+      <!-- TAB: COMPARISON MATRIX -->
+      <section id="content-compare" class="tab-content animate-slide-up">
+        <div class="compare-selection glassmorphism">
+          <div class="compare-select-group">
+            <label for="compare-car-1"><i data-lucide="car"></i> Primary Model</label>
+            <select id="compare-car-1" onchange="renderComparison()"></select>
+          </div>
+          <div class="vs-badge">VS</div>
+          <div class="compare-select-group">
+            <label for="compare-car-2"><i data-lucide="car"></i> Competitor Model</label>
+            <select id="compare-car-2" onchange="renderComparison()"></select>
+          </div>
+        </div>
+
+        <div class="compare-results" id="compare-results-matrix">
+          <!-- Matrix rendered by JS -->
+        </div>
+      </section>
+
+      <!-- TAB: SMART MATCHER -->
+      <section id="content-matcher" class="tab-content animate-slide-up">
+        <div class="matcher-card glassmorphism">
+          <!-- Step Indicators -->
+          <div class="step-indicator-bar">
+            <div class="step-dot active" id="dot-1">1<span>Budget</span></div>
+            <div class="step-line" id="line-1"></div>
+            <div class="step-dot" id="dot-2">2<span>Style</span></div>
+            <div class="step-line" id="line-2"></div>
+            <div class="step-dot" id="dot-3">3<span>Fuel</span></div>
+            <div class="step-line" id="line-3"></div>
+            <div class="step-dot" id="dot-4">4<span>Safety</span></div>
+          </div>
+
+          <!-- Wizard Container -->
+          <div class="wizard-container">
+            <!-- Step 1: Budget -->
+            <div class="wizard-step active-step" id="step-panel-1">
+              <h3>What is your maximum budget?</h3>
+              <p class="text-muted">Select the price range matching your target ex-showroom budget.</p>
+              
+              <div class="budget-slider-wrapper">
+                <span class="budget-val" id="budget-val-display">15 Lakhs</span>
+                <input type="range" id="matcher-budget-slider" min="3" max="60" value="15" step="1" oninput="updateBudgetDisplay(this.value)">
+                <div class="slider-labels">
+                  <span>Rs 3L</span>
+                  <span>Rs 15L</span>
+                  <span>Rs 30L</span>
+                  <span>Rs 45L</span>
+                  <span>Rs 60L+</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Body Style -->
+            <div class="wizard-step" id="step-panel-2">
+              <h3>Choose your preferred Body Style</h3>
+              <p class="text-muted">Pick the format that meets your spacing and travel utility.</p>
+              
+              <div class="option-grid">
+                <div class="option-card" onclick="selectOption('style', 'any', this)">
+                  <i data-lucide="layout-grid"></i>
+                  <h4>Any Style</h4>
+                  <p>Hatchback, SUV, Sedan, or MPV</p>
+                </div>
+                <div class="option-card" onclick="selectOption('style', 'Hatchback', this)">
+                  <i data-lucide="box"></i>
+                  <h4>Hatchback</h4>
+                  <p>Compact, easy parking, city friendly</p>
+                </div>
+                <div class="option-card" onclick="selectOption('style', 'Sedan', this)">
+                  <i data-lucide="credit-card"></i>
+                  <h4>Sedan</h4>
+                  <p>Premium aesthetics, comfortable boot</p>
+                </div>
+                <div class="option-card" onclick="selectOption('style', 'SUV', this)">
+                  <i data-lucide="shield"></i>
+                  <h4>SUV / Crossover</h4>
+                  <p>High clearance, imposing road presence</p>
+                </div>
+                <div class="option-card" onclick="selectOption('style', 'MPV', this)">
+                  <i data-lucide="users"></i>
+                  <h4>MPV / 7-Seater</h4>
+                  <p>Family highway cruises, maximised cabin</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Fuel Type -->
+            <div class="wizard-step" id="step-panel-3">
+              <h3>Select preferred fuel options</h3>
+              <p class="text-muted">Choose your energy type. Multiple selections allowed.</p>
+              
+              <div class="option-grid multi">
+                <div class="option-card multi-select" data-val="Petrol" onclick="toggleMultiSelect(this)">
+                  <i data-lucide="droplet"></i>
+                  <h4>Petrol</h4>
+                  <p>Quiet engines, smooth throttle responses</p>
+                </div>
+                <div class="option-card multi-select" data-val="Diesel" onclick="toggleMultiSelect(this)">
+                  <i data-lucide="flame"></i>
+                  <h4>Diesel</h4>
+                  <p>Highway torquey cruises, excellent fuel range</p>
+                </div>
+                <div class="option-card multi-select" data-val="CNG" onclick="toggleMultiSelect(this)">
+                  <i data-lucide="leaf"></i>
+                  <h4>CNG</h4>
+                  <p>Very low running costs, green commutes</p>
+                </div>
+                <div class="option-card multi-select" data-val="Electric" onclick="toggleMultiSelect(this)">
+                  <i data-lucide="zap"></i>
+                  <h4>Electric (EV)</h4>
+                  <p>Zero emissions, modern tech, future proof</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Safety Focus -->
+            <div class="wizard-step" id="step-panel-4">
+              <h3>Is safety rating a high priority?</h3>
+              <p class="text-muted">Filter models that secured 4 or 5 stars in crash tests.</p>
+              
+              <div class="option-grid">
+                <div class="option-card" onclick="selectOption('safety', 'yes', this)">
+                  <i data-lucide="award"></i>
+                  <h4>Yes, Safety First!</h4>
+                  <p>Only show 4 and 5-star safety rated vehicles</p>
+                </div>
+                <div class="option-card" onclick="selectOption('safety', 'no', this)">
+                  <i data-lucide="check"></i>
+                  <h4>No Preference</h4>
+                  <p>Include all models regardless of NCAP ranking</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wizard Action Bar -->
+          <div class="wizard-actions">
+            <button class="wiz-btn secondary-btn" id="btn-wiz-prev" onclick="prevStep()" disabled>
+              <i data-lucide="arrow-left"></i> Back
+            </button>
+            <button class="wiz-btn primary-btn" id="btn-wiz-next" onclick="nextStep()">
+              Next <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Wizard Recommendation Output -->
+        <div class="recommendations-wrapper" id="wizard-recommendations" style="display: none;">
+          <h3 class="rec-title"><i data-lucide="check-circle-2"></i> Tailored Matches for you</h3>
+          <div class="explorer-grid" id="matcher-results-grid"></div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Detail Modal Overlay -->
+  <div class="modal-overlay" id="car-detail-modal" onclick="closeModal()">
+    <div class="modal-content glassmorphism" onclick="event.stopPropagation()">
+      <button class="close-modal-btn" onclick="closeModal()"><i data-lucide="x"></i></button>
+      <div id="modal-body-content">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Database & Application Scripts -->
+  <script src="cars_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
