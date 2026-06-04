@@ -5,7 +5,7 @@ import streamlit.components.v1 as components
 
 # Set page config
 st.set_page_config(
-    page_title="India-Cars-AI-Assistant - Pre-Trained Chat Engine",
+    page_title="India Cars Ai Assistant - Pre-Trained Chat Engine",
     page_icon="🚗",
     layout="wide",
     initial_sidebar_state="collapsed"
