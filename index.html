@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>India Cars LLM - Pre-Trained Chat Engine</title>
+  <title>India-Cars-AI-Assistant - Pre-Trained Chat Engine</title>
   <!-- Google Fonts: Outfit (Brand & Headings) and JetBrains Mono (Specs & Code Console) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
+
   <div class="app-container">
     
     <!-- Sidebar Navigation -->
@@ -23,10 +24,11 @@
           <i data-lucide="cpu" class="glow-icon"></i>
         </div>
         <div class="brand-text">
-          <h1>INDIA CARS LLM</h1>
+          <h1>India-Cars-AI-Assistant</h1>
           <span class="version-tag">PRE-TRAINED v2026.1</span>
         </div>
       </div>
+
       <nav class="nav-menu">
         <button class="nav-btn active" id="tab-chat" onclick="switchTab('chat')">
           <i data-lucide="message-square-code"></i>
@@ -49,6 +51,7 @@
           <span class="active-indicator"></span>
         </button>
       </nav>
+
       <div class="system-status">
         <div class="status-indicator">
           <span class="pulse"></span>
@@ -57,6 +60,7 @@
         <p class="status-desc">No external API | 100% Offline</p>
       </div>
     </aside>
+
     <!-- Main Content Area -->
     <main class="main-content">
       
@@ -67,6 +71,7 @@
           <p id="current-tab-desc" class="text-muted">Converse with the pre-trained engine using natural prompts</p>
         </div>
       </header>
+
       <!-- TAB: CHAT ENGINE -->
       <section id="content-chat" class="tab-content active-content animate-slide-up">
         <div class="chat-wrapper">
@@ -79,7 +84,7 @@
               </div>
               <div class="message-body">
                 <pre class="console-font">==========================================================================
-    WELCOME TO INDIA CARS LLM  --  PRE-TRAINED OFFLINE CHAT ENGINE
+    WELCOME TO India-Cars-AI-Assistant  --  PRE-TRAINED OFFLINE CHAT ENGINE
 ==========================================================================
     I am an offline rule-based knowledge engine containing deep profiles 
     of iconic Indian cars sold between 2000 and 2026.
@@ -96,6 +101,7 @@
               </div>
             </div>
           </div>
+
           <!-- Suggested Prompts -->
           <div class="suggested-prompts">
             <span class="suggestion" onclick="fillPrompt('tell me about Mahindra Thar')">Describe Thar</span>
@@ -105,6 +111,7 @@
             <span class="suggestion" onclick="fillPrompt('SUVs under 15 lakhs')">💰 SUVs &lt; 15L</span>
             <span class="suggestion" onclick="fillPrompt('mileage of Celerio')">⛽ Best Mileage</span>
           </div>
+
           <!-- Input Bar -->
           <form class="chat-input-area" id="chat-input-form" onsubmit="handleChatSubmit(event)">
             <input type="text" id="chat-query-input" placeholder="Ask about price, specs, safety, mileage, variants, comparisons, or budget..." autocomplete="off">
@@ -115,6 +122,7 @@
           </form>
         </div>
       </section>
+
       <!-- TAB: CAR EXPLORER -->
       <section id="content-explorer" class="tab-content animate-slide-up">
         <!-- Explorer Controls -->
@@ -132,6 +140,7 @@
               <option value="Honda">Honda</option>
             </select>
           </div>
+
           <div class="filter-group">
             <label for="filter-category"><i data-lucide="layout"></i> Body Style</label>
             <select id="filter-category" onchange="applyFilters()">
@@ -143,16 +152,19 @@
               <option value="Electric">Electric Vehicles</option>
             </select>
           </div>
+
           <div class="filter-group search-box">
             <label for="filter-search"><i data-lucide="keyboard"></i> Search Model</label>
             <input type="text" id="filter-search" placeholder="Type to filter..." oninput="applyFilters()">
           </div>
         </div>
+
         <!-- Explorer Grid -->
         <div class="explorer-grid" id="explorer-cards-grid">
           <!-- Cards injected by JS -->
         </div>
       </section>
+
       <!-- TAB: COMPARISON MATRIX -->
       <section id="content-compare" class="tab-content animate-slide-up">
         <div class="compare-selection glassmorphism">
@@ -166,10 +178,12 @@
             <select id="compare-car-2" onchange="renderComparison()"></select>
           </div>
         </div>
+
         <div class="compare-results" id="compare-results-matrix">
           <!-- Matrix rendered by JS -->
         </div>
       </section>
+
       <!-- TAB: SMART MATCHER -->
       <section id="content-matcher" class="tab-content animate-slide-up">
         <div class="matcher-card glassmorphism">
@@ -183,6 +197,7 @@
             <div class="step-line" id="line-3"></div>
             <div class="step-dot" id="dot-4">4<span>Safety</span></div>
           </div>
+
           <!-- Wizard Container -->
           <div class="wizard-container">
             <!-- Step 1: Budget -->
@@ -202,6 +217,7 @@
                 </div>
               </div>
             </div>
+
             <!-- Step 2: Body Style -->
             <div class="wizard-step" id="step-panel-2">
               <h3>Choose your preferred Body Style</h3>
@@ -235,6 +251,7 @@
                 </div>
               </div>
             </div>
+
             <!-- Step 3: Fuel Type -->
             <div class="wizard-step" id="step-panel-3">
               <h3>Select preferred fuel options</h3>
@@ -263,6 +280,7 @@
                 </div>
               </div>
             </div>
+
             <!-- Step 4: Safety Focus -->
             <div class="wizard-step" id="step-panel-4">
               <h3>Is safety rating a high priority?</h3>
@@ -282,6 +300,7 @@
               </div>
             </div>
           </div>
+
           <!-- Wizard Action Bar -->
           <div class="wizard-actions">
             <button class="wiz-btn secondary-btn" id="btn-wiz-prev" onclick="prevStep()" disabled>
@@ -292,14 +311,18 @@
             </button>
           </div>
         </div>
+
         <!-- Wizard Recommendation Output -->
         <div class="recommendations-wrapper" id="wizard-recommendations" style="display: none;">
           <h3 class="rec-title"><i data-lucide="check-circle-2"></i> Tailored Matches for you</h3>
           <div class="explorer-grid" id="matcher-results-grid"></div>
         </div>
       </section>
+
     </main>
+
   </div>
+
   <!-- Detail Modal Overlay -->
   <div class="modal-overlay" id="car-detail-modal" onclick="closeModal()">
     <div class="modal-content glassmorphism" onclick="event.stopPropagation()">
@@ -309,6 +332,7 @@
       </div>
     </div>
   </div>
+
   <!-- Database & Application Scripts -->
   <script src="cars_data.js"></script>
   <script src="app.js"></script>
