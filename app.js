@@ -1,5 +1,5 @@
 // ==========================================================================
-//  India-Cars-AI-Assistant - APPLICATION CONTROLLER & LOGIC ENGINE
+//  India Cars Ai Assistant - APPLICATION CONTROLLER & LOGIC ENGINE
 // ==========================================================================
 
 // Global state for recommendation matcher wizard
@@ -555,7 +555,7 @@ function processChatNLP(query) {
   // 1. Greet command
   if (['hi', 'hello', 'hey', 'start', 'help', 'welcome'].includes(q)) {
     return `==========================================================================
-    WELCOME TO India-Cars-AI-Assistant  --  PRE-TRAINED OFFLINE CHAT ENGINE
+    WELCOME TO India Cars Ai Assistant  --  PRE-TRAINED OFFLINE CHAT ENGINE
 ==========================================================================
     I am an offline rule-based knowledge engine containing deep profiles 
     of iconic Indian cars sold between 2000 and 2026.
