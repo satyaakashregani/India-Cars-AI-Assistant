@@ -2,7 +2,6 @@ import os
 import re
 import streamlit as st
 import streamlit.components.v1 as components
-
 # Set page config
 st.set_page_config(
     page_title="India Cars LLM - Pre-Trained Chat Engine",
@@ -10,7 +9,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
-
 # Custom style to disable outer Streamlit scrolling and force full-screen iframe scrolling
 st.markdown("""
 <style>
@@ -53,7 +51,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
 # Read HTML and bundle CSS and JS files inline dynamically on load
 def load_bundled_html():
     base_dir = os.path.dirname(__file__) if os.path.dirname(__file__) else "."
@@ -79,7 +76,6 @@ def load_bundled_html():
     html = html.replace('<script src="app.js"></script>', "<script>\n" + app_js + "\n</script>")
     
     return html
-
 try:
     bundled_content = load_bundled_html()
     # Serve bundled application in components.html
