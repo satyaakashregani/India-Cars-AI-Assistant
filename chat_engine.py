@@ -1,6 +1,6 @@
 """
 ==========================================================================
-        INDIA CARS LLM  -  Pre-Trained Chat Engine
+        India Cars Ai Assistant  -  Pre-Trained Chat Engine
         Covers Indian car market  2000 to 2026
         No external API  |  Fully embedded knowledge base
         Rewritten using OOP: Classes, Objects, if/elif/else
@@ -1328,7 +1328,7 @@ class CarChatEngine:
     def _greeting(self):
         banner = """
 ==========================================================================
-    WELCOME TO INDIA CARS LLM  --  PRE-TRAINED OFFLINE CHAT ENGINE
+    WELCOME TO India Cars Ai Assistant  --  PRE-TRAINED OFFLINE CHAT ENGINE
 ==========================================================================
     I am an offline rule-based knowledge engine containing deep profiles
     of iconic Indian cars sold between 2000 and 2026.
@@ -1494,7 +1494,7 @@ if __name__ == "__main__":
     engine = CarChatEngine(db)
     
     print("==========================================================================")
-    print("        INDIA CARS LLM  -  Offline Pre-Trained Chat Engine")
+    print("        India Cars Ai Assistant  -  Offline Pre-Trained Chat Engine")
     print("        Type 'exit' or 'quit' to close the terminal.")
     print("==========================================================================")
     print(engine.ask("hello"))
