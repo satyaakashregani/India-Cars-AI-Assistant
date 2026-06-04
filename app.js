@@ -1,5 +1,5 @@
 // ==========================================================================
-//  INDIA CARS LLM - APPLICATION CONTROLLER & LOGIC ENGINE
+//  India-Cars-AI-Assistant - APPLICATION CONTROLLER & LOGIC ENGINE
 // ==========================================================================
 
 // Global state for recommendation matcher wizard
@@ -555,7 +555,7 @@ function processChatNLP(query) {
   // 1. Greet command
   if (['hi', 'hello', 'hey', 'start', 'help', 'welcome'].includes(q)) {
     return `==========================================================================
-    WELCOME TO INDIA CARS LLM  --  PRE-TRAINED OFFLINE CHAT ENGINE
+    WELCOME TO India-Cars-AI-Assistant  --  PRE-TRAINED OFFLINE CHAT ENGINE
 ==========================================================================
     I am an offline rule-based knowledge engine containing deep profiles 
     of iconic Indian cars sold between 2000 and 2026.
@@ -778,7 +778,7 @@ function handleChatSubmit(event) {
   if (!query) return;
 
   // Append user message
-  appendMessage('USER AGENT', query, 'user');
+  appendMessage('User', query, 'user');
   inputEl.value = '';
 
   // Processing response
@@ -804,7 +804,7 @@ function appendMessage(sender, text, type) {
   msg.innerHTML = `
     <div class="message-sender">
       <i data-lucide="${iconName}"></i>
-      <span>${sender.toUpperCase()}</span>
+      <span>${sender}</span>
     </div>
     <div class="message-body ${isSystem ? 'console-font' : ''}">
       ${isSystem ? `<pre class="console-font">${text}</pre>` : text}
